@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import AppError from '@shared/errors/AppError';
 import Order from '../typeorm/entities/Order';
-import { OrderRepository } from '../typeorm/repositories/OrdersRepository';
+import { OrdersRepository } from '../typeorm/repositories/OrdersRepository';
 
 interface IRequest {
   id: string;
@@ -9,7 +9,7 @@ interface IRequest {
 
 class ShowOrderService {
   public async execute({ id }: IRequest): Promise<Order> {
-    const ordersRepository = getCustomRepository(OrderRepository);
+    const ordersRepository = getCustomRepository(OrdersRepository);
 
     const order = await ordersRepository.findById(id);
     if (!order) {
