@@ -10,7 +10,7 @@ export default class ProductsController {
     const listProducts = new ListProductService();
     const products = await listProducts.execute();
 
-    return response.json(products).status(200);
+    return response.status(200).json(products);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -18,7 +18,7 @@ export default class ProductsController {
     const showProduct = new ShowProductService();
     const product = await showProduct.execute({ id });
 
-    return response.json(product).status(200);
+    return response.status(200).json(product);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -26,7 +26,7 @@ export default class ProductsController {
     const createProduct = new CreateProductService();
     const product = await createProduct.execute({ name, price, quantity });
 
-    return response.json(product).status(201);
+    return response.status(201).json(product);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -35,7 +35,7 @@ export default class ProductsController {
     const updateProduct = new UpdateProductService();
     const product = await updateProduct.execute({ id, name, price, quantity });
 
-    return response.json(product).status(200);
+    return response.status(200).json(product);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
@@ -43,6 +43,6 @@ export default class ProductsController {
     const deleteProduct = new DeleteProductService();
     await deleteProduct.execute({ id });
 
-    return response.json([]).status(204);
+    return response.status(204).json([]);
   }
 }
